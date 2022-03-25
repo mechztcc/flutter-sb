@@ -24,11 +24,19 @@ class _CreateAccountFormWidgetState
   final nameEC = TextEditingController();
   final emailEC = TextEditingController();
   final passwordEC = TextEditingController();
+  var isSaving = false;
 
-  void validateForm() {
+  void validateForm() async {
     var isValid = _formKey.currentState?.validate();
     if (isValid ?? false) {
-      controller.createAccount(nameEC.text, emailEC.text, passwordEC.text);
+      setState(() {
+        isSaving = true;
+      });
+      await controller.createAccount(
+          nameEC.text, emailEC.text, passwordEC.text);
+      setState(() {
+        isSaving = false;
+      });
     }
   }
 
@@ -45,96 +53,109 @@ class _CreateAccountFormWidgetState
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const Text(
-                    'Bem-vindo',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    'Crie sua conta gratuitamente',
-                    style: TextStyle(color: Colors.black54),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
+              child: isSaving == true
+                  ? Center(
+                      child: Column(
+                        children: const [
+                          CircularProgressIndicator(),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Text('Enviar informações'),
+                          ),
+                        ],
+                      ),
+                    )
+                  : Column(
                       children: [
-                        CustomInputWidget(
-                          controller: nameEC,
-                          validator:
-                              Validatorless.required('Nome é Obrigatorio'),
-                          label: 'Nome completo',
-                          icon: const Icon(Icons.person),
-                        ),
-                        CustomInputWidget(
-                          controller: emailEC,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('Campo obrigatório'),
-                            Validatorless.email('E-mail inválido')
-                          ]),
-                          label: 'Email',
-                          icon: const Icon(Icons.email),
-                        ),
-                        CustomInputWidget(
-                          controller: passwordEC,
-                          validator: Validatorless.multiple([
-                            Validatorless.required('Campo obrigatorio'),
-                            Validatorless.min(6, 'Tamanho mínimo incorreto')
-                          ]),
-                          label: 'Senha',
-                          icon: const Icon(Icons.lock),
-                        ),
-                        SizedBox(
-                          width: constraints.maxWidth * 0.8,
-                          child: GradientButtonWidget(
-                            func: validateForm,
-                            label: 'Criar conta gratuita',
-                            gradient: const [
-                              Color(0xff5F72E4),
-                              Color(0xff805EE4),
-                            ],
+                        const Text(
+                          'Bem-vindo',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
                           ),
                         ),
-                        SizedBox(
-                          width: constraints.maxWidth * 0.8,
-                          child: GradientButtonWidget(
-                            func: validateForm,
-                            label: 'Já sou cadastrado',
-                            gradient: const [
-                              Color(0xffFB6440),
-                              Color(0xffFBAF40),
-                            ],
-                          ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          'Crie sua conta gratuitamente',
+                          style: TextStyle(color: Colors.black54),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          children: const [
-                            Expanded(
-                              child: Divider(),
-                            )
-                          ],
-                        ),
-                        const Text(
-                          'Ao criar uma conta você concorda com os Termos de acesso & Privacidade',
-                          style: TextStyle(color: Colors.black54),
-                          textAlign: TextAlign.center,
-                        ),
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              CustomInputWidget(
+                                controller: nameEC,
+                                validator: Validatorless.required(
+                                    'Nome é Obrigatorio'),
+                                label: 'Nome completo',
+                                icon: const Icon(Icons.person),
+                              ),
+                              CustomInputWidget(
+                                controller: emailEC,
+                                validator: Validatorless.multiple([
+                                  Validatorless.required('Campo obrigatório'),
+                                  Validatorless.email('E-mail inválido')
+                                ]),
+                                label: 'Email',
+                                icon: const Icon(Icons.email),
+                              ),
+                              CustomInputWidget(
+                                controller: passwordEC,
+                                validator: Validatorless.multiple([
+                                  Validatorless.required('Campo obrigatorio'),
+                                  Validatorless.min(
+                                      6, 'Tamanho mínimo incorreto')
+                                ]),
+                                label: 'Senha',
+                                icon: const Icon(Icons.lock),
+                              ),
+                              SizedBox(
+                                width: constraints.maxWidth * 0.8,
+                                child: GradientButtonWidget(
+                                  func: validateForm,
+                                  label: 'Criar conta gratuita',
+                                  gradient: const [
+                                    Color(0xff5F72E4),
+                                    Color(0xff805EE4),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: constraints.maxWidth * 0.8,
+                                child: GradientButtonWidget(
+                                  func: validateForm,
+                                  label: 'Já sou cadastrado',
+                                  gradient: const [
+                                    Color(0xffFB6440),
+                                    Color(0xffFBAF40),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: const [
+                                  Expanded(
+                                    child: Divider(),
+                                  )
+                                ],
+                              ),
+                              const Text(
+                                'Ao criar uma conta você concorda com os Termos de acesso & Privacidade',
+                                style: TextStyle(color: Colors.black54),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  )
-                ],
-              ),
             ),
           ),
         ),
