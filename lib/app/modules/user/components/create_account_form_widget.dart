@@ -26,7 +26,10 @@ class _CreateAccountFormWidgetState
   final passwordEC = TextEditingController();
 
   void validateForm() {
-    _formKey.currentState?.validate();
+    var isValid = _formKey.currentState?.validate();
+    if (isValid ?? false) {
+      controller.createAccount(nameEC.text, emailEC.text, passwordEC.text);
+    }
   }
 
   @override
