@@ -17,11 +17,8 @@ class CreateAccountPageState
   Widget build(BuildContext context) {
     controller.createAccount('Alberto 90', 'alberto90@email.com', '123456');
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: LayoutBuilder(
-        builder: (context, constraints) => Center(
+        builder: (context, constraints) => const Center(
           child: CreateAccountFormWidget(),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sb/app/modules/user/components/custom_input_widget.dart';
+import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
 class CreateAccountFormWidget extends StatelessWidget {
   final String title;
@@ -29,8 +30,12 @@ class CreateAccountFormWidget extends StatelessWidget {
                       fontSize: 25,
                     ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   const Text(
                     'Crie sua conta gratuitamente',
+                    style: TextStyle(color: Colors.black54),
                   ),
                   const SizedBox(
                     height: 20,
@@ -52,21 +57,37 @@ class CreateAccountFormWidget extends StatelessWidget {
                         ),
                         SizedBox(
                           width: constraints.maxWidth * 0.8,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(),
-                            onPressed: () {},
-                            child: const Text('Criar conta gratuita'),
+                          child: const GradientButtonWidget(
+                            label: 'Criar conta gratuita',
+                            gradient: [
+                              Color(0xff5F72E4),
+                              Color(0xff805EE4),
+                            ],
                           ),
                         ),
                         SizedBox(
                           width: constraints.maxWidth * 0.8,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0xffFB6B40),
-                            ),
-                            onPressed: () {},
-                            child: const Text('Já sou cadastrado'),
+                          child: const GradientButtonWidget(
+                            label: 'Já sou cadastrado',
+                            gradient: [
+                              Color(0xffFB6440),
+                              Color(0xffFBAF40),
+                            ],
                           ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: const [
+                            Expanded(
+                              child: Divider(),
+                            )
+                          ],
+                        ),
+                        const Text(
+                          'Ao criar uma conta você concorda com os Termos de acesso & Privacidade',
+                          style: TextStyle(color: Colors.black54),
                         ),
                       ],
                     ),
