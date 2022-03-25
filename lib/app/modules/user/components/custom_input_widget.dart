@@ -4,11 +4,15 @@ class CustomInputWidget extends StatelessWidget {
   final String title;
   final String label;
   final Icon icon;
+  final dynamic validator;
+  final TextEditingController controller;
   const CustomInputWidget(
       {Key? key,
       this.title = "CustomInputWidget",
       required this.label,
-      required this.icon})
+      required this.icon,
+      required this.validator,
+      required this.controller})
       : super(key: key);
 
   @override
@@ -16,6 +20,8 @@ class CustomInputWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
+        validator: validator,
+        controller: controller,
         decoration: InputDecoration(
           label: Text(label),
           border: OutlineInputBorder(

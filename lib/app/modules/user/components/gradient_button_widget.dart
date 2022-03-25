@@ -4,11 +4,13 @@ class GradientButtonWidget extends StatelessWidget {
   final String title;
   final String label;
   final List<Color> gradient;
+  final Function func;
   const GradientButtonWidget(
       {Key? key,
       this.title = "GradientButtonWidget",
       required this.label,
-      required this.gradient})
+      required this.gradient,
+      required this.func})
       : super(key: key);
 
   @override
@@ -22,7 +24,9 @@ class GradientButtonWidget extends StatelessWidget {
         ),
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          func();
+        },
         child: Text(
           label,
           style: const TextStyle(

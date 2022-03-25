@@ -15,7 +15,6 @@ class CreateAccountPageState
     extends ModularState<CreateAccountPage, UserStore> {
   @override
   Widget build(BuildContext context) {
-    controller.createAccount('Alberto 90', 'alberto90@email.com', '123456');
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) => const Center(

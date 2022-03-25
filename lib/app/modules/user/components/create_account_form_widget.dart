@@ -1,12 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/user/components/custom_input_widget.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
+import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
+import 'package:validatorless/validatorless.dart';
 
-class CreateAccountFormWidget extends StatelessWidget {
+class CreateAccountFormWidget extends StatefulWidget {
   final String title;
+
   const CreateAccountFormWidget(
       {Key? key, this.title = "CreateAccountFormWidget"})
       : super(key: key);
+
+  @override
+  State<CreateAccountFormWidget> createState() =>
+      _CreateAccountFormWidgetState();
+}
+
+class _CreateAccountFormWidgetState
+    extends ModularState<CreateAccountFormWidget, UserStore> {
+  final _formKey = GlobalKey<FormState>();
+
+  final nameEC = TextEditingController();
+  final emailEC = TextEditingController();
+  final passwordEC = TextEditingController();
+
+  void validateForm() {
+    _formKey.currentState?.validate();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +37,7 @@ class CreateAccountFormWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
         child: Container(
           width: constraints.maxWidth * 0.8,
-          height: constraints.maxHeight * 0.6,
+          height: constraints.maxHeight * 0.7,
           color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -41,25 +62,40 @@ class CreateAccountFormWidget extends StatelessWidget {
                     height: 20,
                   ),
                   Form(
+                    key: _formKey,
                     child: Column(
                       children: [
-                        const CustomInputWidget(
+                        CustomInputWidget(
+                          controller: nameEC,
+                          validator:
+                              Validatorless.required('Nome é Obrigatorio'),
                           label: 'Nome completo',
-                          icon: Icon(Icons.person),
+                          icon: const Icon(Icons.person),
                         ),
-                        const CustomInputWidget(
+                        CustomInputWidget(
+                          controller: emailEC,
+                          validator: Validatorless.multiple([
+                            Validatorless.required('Campo obrigatório'),
+                            Validatorless.email('E-mail inválido')
+                          ]),
                           label: 'Email',
-                          icon: Icon(Icons.email),
+                          icon: const Icon(Icons.email),
                         ),
-                        const CustomInputWidget(
+                        CustomInputWidget(
+                          controller: passwordEC,
+                          validator: Validatorless.multiple([
+                            Validatorless.required('Campo obrigatorio'),
+                            Validatorless.min(6, 'Tamanho mínimo incorreto')
+                          ]),
                           label: 'Senha',
-                          icon: Icon(Icons.lock),
+                          icon: const Icon(Icons.lock),
                         ),
                         SizedBox(
                           width: constraints.maxWidth * 0.8,
-                          child: const GradientButtonWidget(
+                          child: GradientButtonWidget(
+                            func: validateForm,
                             label: 'Criar conta gratuita',
-                            gradient: [
+                            gradient: const [
                               Color(0xff5F72E4),
                               Color(0xff805EE4),
                             ],
@@ -67,9 +103,10 @@ class CreateAccountFormWidget extends StatelessWidget {
                         ),
                         SizedBox(
                           width: constraints.maxWidth * 0.8,
-                          child: const GradientButtonWidget(
+                          child: GradientButtonWidget(
+                            func: validateForm,
                             label: 'Já sou cadastrado',
-                            gradient: [
+                            gradient: const [
                               Color(0xffFB6440),
                               Color(0xffFBAF40),
                             ],
@@ -88,6 +125,7 @@ class CreateAccountFormWidget extends StatelessWidget {
                         const Text(
                           'Ao criar uma conta você concorda com os Termos de acesso & Privacidade',
                           style: TextStyle(color: Colors.black54),
+                          textAlign: TextAlign.center,
                         ),
                       ],
                     ),
