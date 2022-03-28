@@ -29,6 +29,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
       setState(() {
         isSaving = false;
       });
+      Modular.to.pushNamed('dashboard/');
     }
   }
 

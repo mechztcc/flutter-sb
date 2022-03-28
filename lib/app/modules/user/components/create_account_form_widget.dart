@@ -37,6 +37,7 @@ class _CreateAccountFormWidgetState
       setState(() {
         isSaving = false;
       });
+      Modular.to.pushNamed('login');
     }
   }
 
@@ -60,7 +61,12 @@ class _CreateAccountFormWidgetState
                           CircularProgressIndicator(),
                           Padding(
                             padding: EdgeInsets.only(top: 10),
-                            child: Text('Enviar informações',style: TextStyle(fontWeight: FontWeight.bold)),
+                            child: Text(
+                              'Enviar informações',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -109,7 +115,9 @@ class _CreateAccountFormWidgetState
                                 validator: Validatorless.multiple([
                                   Validatorless.required('Campo obrigatorio'),
                                   Validatorless.min(
-                                      6, 'Tamanho mínimo incorreto',)
+                                    6,
+                                    'Tamanho mínimo incorreto',
+                                  )
                                 ]),
                                 label: 'Senha',
                                 icon: const Icon(Icons.lock),

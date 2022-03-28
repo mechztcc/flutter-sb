@@ -27,6 +27,7 @@ abstract class _UserStoreBase with Store {
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('token', response.token);
       prefs.setString('name', response.name);
+
     } catch (e) {
       print(e);
     }
