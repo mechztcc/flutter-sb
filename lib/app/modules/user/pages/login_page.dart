@@ -18,14 +18,14 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
   final passwordEC = TextEditingController();
   var isSaving = false;
 
-  validateForm() {
+  void validateForm() async {
     final isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       setState(() {
         isSaving = true;
       });
 
-      controller.login(emailEC.text, passwordEC.text);
+      await controller.login(emailEC.text, passwordEC.text);
       setState(() {
         isSaving = false;
       });
@@ -46,11 +46,11 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                 width: constraints.maxWidth * 0.8,
                 height: constraints.maxHeight * 0.7,
                 padding: const EdgeInsets.only(top: 30),
-                child: isSaving
+                child: isSaving == true
                     ? Column(
                       children: const [
                         CircularProgressIndicator(),
-                        Text('Enviando informações')
+                        Text('Enviando informações', style: TextStyle(fontWeight: FontWeight.bold),)
                       ],
                     )
                     : Form(

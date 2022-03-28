@@ -60,7 +60,7 @@ class _CreateAccountFormWidgetState
                           CircularProgressIndicator(),
                           Padding(
                             padding: EdgeInsets.only(top: 10),
-                            child: Text('Enviar informações'),
+                            child: Text('Enviar informações',style: TextStyle(fontWeight: FontWeight.bold)),
                           ),
                         ],
                       ),
