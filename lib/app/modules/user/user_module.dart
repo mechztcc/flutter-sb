@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
+import 'package:flutter_sb/app/modules/user/pages/login_page.dart';
 import 'package:flutter_sb/app/modules/user/repositories/user_repository.dart';
 import 'package:flutter_sb/app/modules/user/pages/create-account_page.dart';
 
@@ -17,6 +18,7 @@ class UserModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => CreateAccountPage()),
+    ChildRoute('/', child: (_, args) => const CreateAccountPage()),
+    ChildRoute('/login', child: (_, args) => const LoginPage()),
   ];
 }

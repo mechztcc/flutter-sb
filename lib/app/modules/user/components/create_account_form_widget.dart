@@ -109,7 +109,7 @@ class _CreateAccountFormWidgetState
                                 validator: Validatorless.multiple([
                                   Validatorless.required('Campo obrigatorio'),
                                   Validatorless.min(
-                                      6, 'Tamanho mínimo incorreto')
+                                      6, 'Tamanho mínimo incorreto',)
                                 ]),
                                 label: 'Senha',
                                 icon: const Icon(Icons.lock),
@@ -128,7 +128,9 @@ class _CreateAccountFormWidgetState
                               SizedBox(
                                 width: constraints.maxWidth * 0.8,
                                 child: GradientButtonWidget(
-                                  func: validateForm,
+                                  func: () {
+                                    Modular.to.pushNamed('/login');
+                                  },
                                   label: 'Já sou cadastrado',
                                   gradient: const [
                                     Color(0xffFB6440),

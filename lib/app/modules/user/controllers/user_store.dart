@@ -18,4 +18,13 @@ abstract class _UserStoreBase with Store {
       print(e);
     }
   }
+
+  Future<void> login(String email, String password) async {
+    try {
+      var response = await userService.login(email, password);
+      print(response);
+    } catch (e) {
+      print(e);
+    }
+  }
 }
