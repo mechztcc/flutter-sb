@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sb/app/modules/user/models/user_model.dart';
 
 class UserRepository {
   final Dio dio;
@@ -18,12 +19,13 @@ class UserRepository {
     }
   }
 
-  Future<dynamic> login(String email, String password) async {
+  Future<Map<String, dynamic>> login(String email, String password) async {
     try {
-      await dio.post(
+      var response = await dio.post(
         '$url/auth',
         data: { 'email': email, 'password': password },
       );
+      return response.data;
     } on DioError catch (e) {
       throw Exception(e.response);
     }

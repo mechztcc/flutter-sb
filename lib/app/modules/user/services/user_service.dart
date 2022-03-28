@@ -1,3 +1,4 @@
+import 'package:flutter_sb/app/modules/user/models/user_model.dart';
 import 'package:flutter_sb/app/modules/user/repositories/user_repository.dart';
 
 class UserService {
@@ -13,10 +14,11 @@ class UserService {
     }
   }
 
-
-  Future<dynamic> login(String email, String password) async {
+  Future<UserModel> login(String email, String password) async {
     try {
-      await userRepository.login(email, password);
+      var data = await userRepository.login(email, password);
+      UserModel user = UserModel.fromJson(data);
+      return user;
     } catch (e) {
       throw Exception(e);
     }
