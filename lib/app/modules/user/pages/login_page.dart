@@ -29,16 +29,14 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
       setState(() {
         isSaving = false;
       });
-      Modular.to.pushNamed('dashboard/');
+      Modular.to.pushReplacementNamed('dashboard/');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) => Column(
           children: <Widget>[
