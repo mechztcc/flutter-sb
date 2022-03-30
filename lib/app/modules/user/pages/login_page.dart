@@ -45,6 +45,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
             padding: const EdgeInsets.only(top: 30),
             child: isSaving == true
                 ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     CircularProgressIndicator(),
                     Text('Enviando informações', style: TextStyle(fontWeight: FontWeight.bold),)
