@@ -47,7 +47,21 @@ class DashboardPageState extends State<DashboardPage> {
                                     height: 100,
                                     child: Image.asset('assets/burg.png'),
                                   ),
-                                  Text(data[index].name)
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        data[index].name,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 25,
+                                        ),
+                                      ),
+                                      Text(data[index].city),
+                                      Text(data[index].state)
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
