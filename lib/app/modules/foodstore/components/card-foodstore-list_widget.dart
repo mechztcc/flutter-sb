@@ -49,26 +49,7 @@ class CardFoodstoreListWidget extends StatelessWidget {
                     //   padding: const EdgeInsets.only(top: 10),
                     //   child: Row(
                     //     children: [
-                    //       SizedBox(
-                    //         height: 40,
-                    //         child: GradientButtonWidget(
-                    //           label: 'ADD',
-                    //           gradient: const [
-                    //             Color(0xff5F72E4),
-                    //             Color(0xff805EE4),
-                    //           ],
-                    //           func: () {},
-                    //         ),
-                    //       ),
-                    //       IconButton(
-                    //         onPressed: () {},
-                    //         icon: const Icon(Icons.remove),
-                    //       ),
-                    //       const Text('1'),
-                    //       IconButton(
-                    //         onPressed: () {},
-                    //         icon: const Icon(Icons.add),
-                    //       )
+                    //       
                     //     ],
                     //   ),
                     // ),
