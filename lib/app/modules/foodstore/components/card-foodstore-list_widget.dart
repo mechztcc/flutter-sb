@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/foodstore/models/foodstore_model.dart';
 
 class CardFoodstoreListWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class CardFoodstoreListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        
+        Modular.to.pushNamed('/foodstore/${foodstore.id}');
       },
       child: Card(
         shape: RoundedRectangleBorder(

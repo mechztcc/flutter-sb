@@ -17,5 +17,6 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     ModuleRoute('/', module: UserModule()),
     ModuleRoute('/dashboard', module: DashboardModule()),
+    ModuleRoute('/foodstore', module: FoodstoreModule()),
   ];
 }
