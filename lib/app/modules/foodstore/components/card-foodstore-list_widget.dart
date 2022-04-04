@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sb/app/modules/foodstore/models/foodstore_model.dart';
-import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
 class CardFoodstoreListWidget extends StatelessWidget {
   final String title;
@@ -30,47 +29,50 @@ class CardFoodstoreListWidget extends StatelessWidget {
                 height: 100,
                 child: Image.asset('assets/burg.png'),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    foodstore.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      foodstore.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  Text(foodstore.city),
-                  Text(foodstore.state),
-                  Text(foodstore.number),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 10),
-                  //   child: Row(
-                  //     children: [
-                  //       SizedBox(
-                  //         height: 40,
-                  //         child: GradientButtonWidget(
-                  //           label: 'ADD',
-                  //           gradient: const [
-                  //             Color(0xff5F72E4),
-                  //             Color(0xff805EE4),
-                  //           ],
-                  //           func: () {},
-                  //         ),
-                  //       ),
-                  //       IconButton(
-                  //         onPressed: () {},
-                  //         icon: const Icon(Icons.remove),
-                  //       ),
-                  //       const Text('1'),
-                  //       IconButton(
-                  //         onPressed: () {},
-                  //         icon: const Icon(Icons.add),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
-                ],
+                    Text(foodstore.city),
+                    Text(foodstore.state),
+                    Text(foodstore.number),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 10),
+                    //   child: Row(
+                    //     children: [
+                    //       SizedBox(
+                    //         height: 40,
+                    //         child: GradientButtonWidget(
+                    //           label: 'ADD',
+                    //           gradient: const [
+                    //             Color(0xff5F72E4),
+                    //             Color(0xff805EE4),
+                    //           ],
+                    //           func: () {},
+                    //         ),
+                    //       ),
+                    //       IconButton(
+                    //         onPressed: () {},
+                    //         icon: const Icon(Icons.remove),
+                    //       ),
+                    //       const Text('1'),
+                    //       IconButton(
+                    //         onPressed: () {},
+                    //         icon: const Icon(Icons.add),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
             ],
           ),
