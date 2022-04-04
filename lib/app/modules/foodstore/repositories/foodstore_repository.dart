@@ -20,7 +20,6 @@ class FoodstoreRepository {
       FoodstoreModel foodstore = FoodstoreModel.fromJson(item);
       foodstores.add(foodstore);
       }
-      print(foodstores);
       return foodstores;
     } on DioError catch (e) {
       throw Exception(e.response);
