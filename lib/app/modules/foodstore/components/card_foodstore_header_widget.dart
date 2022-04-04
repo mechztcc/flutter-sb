@@ -14,15 +14,19 @@ class CardFoodstoreHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         // border: Border.all(width: 2, color: Colors.blue)
       ),
       height: height,
       width: width,
-      child: Image.asset(
-        'assets/couple.png',
-        fit: BoxFit.cover,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.asset(
+          'assets/burger3.jpg',
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

@@ -41,7 +41,7 @@ class FoodstoreDetailsPageState extends State<FoodstoreDetailsPage> {
                           children: [
                             CardFoodstoreHeaderWidget(
                               height: constraints.maxHeight * 0.3,
-                              width: constraints.maxWidth * 0.9,
+                              width: constraints.maxWidth,
                             ),
                             ListCategoryWidget(
                               height: constraints.maxHeight * 0.1,
