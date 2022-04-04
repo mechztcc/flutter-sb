@@ -7,7 +7,11 @@ class ListCategoryWidget extends StatefulWidget {
   final String title;
   final double width;
   final double height;
-  const ListCategoryWidget({Key? key, this.title = "ListCategoryWidget", required this.width, required this.height})
+  const ListCategoryWidget(
+      {Key? key,
+      this.title = "ListCategoryWidget",
+      required this.width,
+      required this.height})
       : super(key: key);
 
   @override
@@ -34,13 +38,25 @@ class _ListCategoryWidgetState extends State<ListCategoryWidget> {
                 return Row(
                   children: [
                     Container(
-                      height: 25,
-                      margin: EdgeInsets.all(5),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(data[index].name),
-                        style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                      height: 35,
+                      margin: const EdgeInsets.only(right: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color(0xff5F72E4),
+                            Color(0xff805EE4),
+                          ],
+                        ),
                       ),
+                      child: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            data[index].name,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          )),
                     ),
                   ],
                 );

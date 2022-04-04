@@ -43,9 +43,12 @@ class FoodstoreDetailsPageState extends State<FoodstoreDetailsPage> {
                               height: constraints.maxHeight * 0.3,
                               width: constraints.maxWidth,
                             ),
-                            ListCategoryWidget(
-                              height: constraints.maxHeight * 0.1,
-                              width: constraints.maxWidth,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: ListCategoryWidget(
+                                height: constraints.maxHeight * 0.1,
+                                width: constraints.maxWidth,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10),
