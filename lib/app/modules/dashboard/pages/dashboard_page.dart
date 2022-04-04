@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/dashboard/controllers/dashboard_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sb/app/modules/foodstore/components/card-foodstore-list_widget.dart';
 import 'package:flutter_sb/app/modules/foodstore/controllers/foodstore_store.dart';
 import 'package:flutter_sb/app/modules/foodstore/models/foodstore_model.dart';
 
@@ -24,7 +25,7 @@ class DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     find();
     return Scaffold(
-        appBar: AppBar(),
+        // appBar: AppBar(),
         body: FutureBuilder(
           future: store.listAll(),
           builder: ((context, snapshot) {
@@ -35,38 +36,11 @@ class DashboardPageState extends State<DashboardPage> {
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
-                        InkWell(
-                          onTap: () {},
-                          child: SingleChildScrollView(
-                            child: Container(
-                              color: Colors.white60,
-                              child: Row(
-                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(
-                                    height: 100,
-                                    child: Image.asset('assets/burg.png'),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        data[index].name,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 25,
-                                        ),
-                                      ),
-                                      Text(data[index].city),
-                                      Text(data[index].state)
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        CardFoodstoreListWidget(foodstore: data[index]),
+                        CardFoodstoreListWidget(foodstore: data[index]),
+                        CardFoodstoreListWidget(foodstore: data[index]),
+                        CardFoodstoreListWidget(foodstore: data[index]),
+                        CardFoodstoreListWidget(foodstore: data[index]),
                       ],
                     );
                   });

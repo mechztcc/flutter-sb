@@ -12,7 +12,7 @@ class FoodstoreRepository {
 
   Future<List<FoodstoreModel>> listAll() async {
     try {
-      var response = await dio.get('$url/foodstore/list-all');
+      var response = await dio.get('$url/foodstores/list-all');
 
       List<FoodstoreModel> foodstores = [];
 
