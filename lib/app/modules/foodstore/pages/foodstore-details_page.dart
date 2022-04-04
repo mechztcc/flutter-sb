@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/category/components/list-category_widget.dart';
 import 'package:flutter_sb/app/modules/category/controllers/category_store.dart';
 import 'package:flutter_sb/app/modules/dashboard/components/bottom_bar_widget.dart';
+import 'package:flutter_sb/app/modules/foodstore/components/card_foodstore_header_widget.dart';
 
 class FoodstoreDetailsPage extends StatefulWidget {
   final String title;
@@ -36,18 +37,15 @@ class FoodstoreDetailsPageState extends State<FoodstoreDetailsPage> {
                       Expanded(
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: 400,
-                              child: Image.asset('assets/couple.png'),
-                            ),
-                            const ListCategoryWidget(),
+                            CardFoodstoreHeaderWidget(height: constraints.maxHeight * 0.3, width: constraints.maxWidth * 0.9,),
+                            ListCategoryWidget(height: constraints.maxHeight * 0.1,  width: constraints.maxWidth),
                           ],
                         ),
                       ),
                       const BottomBarWidget()
                     ],
                   ),
-                )
+                ),
               ],
             )),
       ),

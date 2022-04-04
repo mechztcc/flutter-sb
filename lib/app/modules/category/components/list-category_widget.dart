@@ -5,7 +5,9 @@ import 'package:flutter_sb/app/modules/category/models/category_model.dart';
 
 class ListCategoryWidget extends StatefulWidget {
   final String title;
-  const ListCategoryWidget({Key? key, this.title = "ListCategoryWidget"})
+  final double width;
+  final double height;
+  const ListCategoryWidget({Key? key, this.title = "ListCategoryWidget", required this.width, required this.height})
       : super(key: key);
 
   @override
@@ -20,24 +22,26 @@ class _ListCategoryWidgetState extends State<ListCategoryWidget> {
     return FutureBuilder(
       future: categoryController.listAll(7),
       builder: ((context, snapshot) {
-        List<CategoryModel> data = snapshot.data as List<CategoryModel>;
         if (snapshot.connectionState == ConnectionState.done) {
+          List<CategoryModel> data = snapshot.data as List<CategoryModel>;
           return SizedBox(
-            width: 600,
-            height: 200,
+            width: widget.width,
+            height: widget.height,
             child: ListView.builder(
+              scrollDirection: Axis.horizontal,
               itemCount: data.length,
               itemBuilder: (context, index) {
                 return Row(
                   children: [
-                    SizedBox(
+                    Container(
                       height: 25,
+                      margin: EdgeInsets.all(5),
                       child: ElevatedButton(
                         onPressed: () {},
                         child: Text(data[index].name),
                         style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
                       ),
-                    )
+                    ),
                   ],
                 );
               },
