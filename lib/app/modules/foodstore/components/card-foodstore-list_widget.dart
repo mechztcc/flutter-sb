@@ -19,16 +19,25 @@ class CardFoodstoreListWidget extends StatelessWidget {
         Modular.to.pushNamed('/foodstore/${foodstore.id}');
       },
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
+              Container(
+                decoration:  BoxDecoration(
+                  borderRadius: BorderRadius.circular(10)
+                ),
                 height: 100,
-                child: Image.asset('assets/burg.png'),
+                width: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/burguer2.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               Flexible(
                 child: Column(
@@ -45,14 +54,6 @@ class CardFoodstoreListWidget extends StatelessWidget {
                     Text(foodstore.city),
                     Text(foodstore.state),
                     Text(foodstore.number),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 10),
-                    //   child: Row(
-                    //     children: [
-                    //       
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

@@ -47,14 +47,17 @@ class FoodstoreDetailsPageState extends State<FoodstoreDetailsPage> {
                               height: constraints.maxHeight * 0.1,
                               width: constraints.maxWidth,
                             ),
-                            SizedBox(
-                              height: constraints.maxHeight * 0.3,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return const CardProductWidget();
-                                },
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: SizedBox(
+                                height: constraints.maxHeight * 0.3,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 5,
+                                  itemBuilder: (context, index) {
+                                    return const CardProductWidget();
+                                  },
+                                ),
                               ),
                             ),
                           ],
