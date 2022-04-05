@@ -4,8 +4,6 @@ import 'package:flutter_sb/app/modules/category/components/list-category_widget.
 import 'package:flutter_sb/app/modules/category/controllers/category_store.dart';
 import 'package:flutter_sb/app/modules/dashboard/components/bottom_bar_widget.dart';
 import 'package:flutter_sb/app/modules/foodstore/components/card_foodstore_header_widget.dart';
-import 'package:flutter_sb/app/modules/product/components/card_product_widget.dart';
-import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
 class FoodstoreDetailsPage extends StatefulWidget {
   final String title;

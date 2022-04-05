@@ -60,11 +60,11 @@ class _ListCategoryWidgetState extends State<ListCategoryWidget> {
                             ),
                             SizedBox(
                               width: widget.width,
-                              height: widget.height * 0.5,
+                              height: widget.height * 0.55,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: data[index].product?.length,
-                                itemBuilder: ((context, index) => const CardProductWidget()),
+                                itemBuilder: ((context, i) => CardProductWidget(product: data[index].product![i])),
                               ),
                             )
                           ],
