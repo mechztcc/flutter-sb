@@ -4,7 +4,8 @@ import 'package:flutter_sb/app/modules/product/controller/product_store.dart';
 
 class ProductPage extends StatefulWidget {
   final String title;
-  const ProductPage({Key? key, this.title = 'ProductPage'}) : super(key: key);
+
+  const ProductPage({Key? key, this.title = 'ProductPage',}) : super(key: key);
   @override
   ProductPageState createState() => ProductPageState();
 }

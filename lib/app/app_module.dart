@@ -22,5 +22,6 @@ class AppModule extends Module {
     ModuleRoute('/', module: UserModule()),
     ModuleRoute('/dashboard', module: DashboardModule()),
     ModuleRoute('/foodstore', module: FoodstoreModule()),
+    ModuleRoute('/product', module: ProductModule()),
   ];
 }
