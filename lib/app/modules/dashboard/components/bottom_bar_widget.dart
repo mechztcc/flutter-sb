@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class BottomBarWidget extends StatelessWidget {
   final String title;
@@ -16,12 +17,16 @@ class BottomBarWidget extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.shopify_sharp),
           label: 'Bolsa',
+
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Configuraçoes',
         ),
       ],
+      onTap: (value) {
+        value == 1 ? Modular.to.pushNamed('/dashboard/bag') : '';
+      },
     );
   }
 }
