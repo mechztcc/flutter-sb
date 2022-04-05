@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/category/category_module.dart';
 import 'package:flutter_sb/app/modules/dashboard/dashboard_module.dart';
 import 'package:flutter_sb/app/modules/foodstore/foodstore_module.dart';
+import 'package:flutter_sb/app/modules/product/product_module.dart';
 import 'package:flutter_sb/app/modules/user/user_module.dart';
 
 class AppModule extends Module {
@@ -12,7 +13,8 @@ class AppModule extends Module {
   List<Module> get imports => [
     FoodstoreModule(),
     DashboardModule(),
-    CategoryModule()
+    CategoryModule(),
+    ProductModule()
   ];
 
   @override

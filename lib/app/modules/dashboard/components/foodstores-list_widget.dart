@@ -30,11 +30,13 @@ class _FoodstoresListWidgetState extends State<FoodstoresListWidget> {
           return ListView.builder(
             itemCount: data.length,
             itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  CardFoodstoreListWidget(foodstore: data[index]),
-                  
-                ],
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    CardFoodstoreListWidget(foodstore: data[index]),
+                  ],
+                ),
               );
             },
           );

@@ -20,14 +20,8 @@ class FoodstoreDetailsPage extends StatefulWidget {
 class FoodstoreDetailsPageState extends State<FoodstoreDetailsPage> {
   final CategoryStore categoryController = Modular.get();
 
-  find() async {
-    var response = await categoryController.listAllCategoriesWithProds(7);
-    print(response[0].product?[0].name);
-  }
-
   @override
   Widget build(BuildContext context) {
-    find();
     return Scaffold(
       appBar: AppBar(
         title: Text('foodstore n° ${widget.foodstoreId}'),

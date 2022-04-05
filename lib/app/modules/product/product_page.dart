@@ -1,6 +1,6 @@
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_sb/app/modules/product/product_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_sb/app/modules/product/controller/product_store.dart';
 
 class ProductPage extends StatefulWidget {
   final String title;

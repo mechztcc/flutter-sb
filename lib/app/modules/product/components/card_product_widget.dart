@@ -1,15 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_sb/app/modules/product/controller/bag_store.dart';
 import 'package:flutter_sb/app/modules/product/models/product_model.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
-class CardProductWidget extends StatelessWidget {
+class CardProductWidget extends StatefulWidget {
   final String title;
   final ProductModel product;
-  const CardProductWidget(
-      {Key? key, this.title = "CardProductWidget", required this.product})
-      : super(key: key);
-// Color(0xffFB6440),
-  // Color(0xffFBAF40),
+  const CardProductWidget({
+    Key? key,
+    this.title = "CardProductWidget",
+    required this.product,
+  }) : super(key: key);
+
+  @override
+  State<CardProductWidget> createState() => _CardProductWidgetState();
+}
+
+class _CardProductWidgetState extends State<CardProductWidget> {
+  final BagStore bagController = Modular.get();
+
+  int qty = 0;
+
+  bool isLoading = false;
+
+  void incrementQty() {
+    setState(() {
+      qty += 1;
+    });
+  }
+
+  void decrementQty() {
+    setState(() {
+      qty > 0 ? qty -= 1 : qty = 0;
+    });
+  }
+
+  void addProduct(ProductModel product) {
+    setState(() {
+      isLoading = true;
+    });
+
+    for (var i = 0; i == qty; i++) {
+      bagController.addProduct(product);
+    }
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,15 +58,19 @@ class CardProductWidget extends StatelessWidget {
         child: Column(
           children: [
             Image.asset('assets/burger.jpg'),
-            Text(product.name!, style: const TextStyle(fontSize: 20,),),
+            Text(
+              widget.product.name!,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
+            ),
             RichText(
-              text:  TextSpan(
-                text: 'R\$ ${product.price}',
+              text: TextSpan(
+                text: 'R\$ ${widget.product.price}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(0xffFB6440),
                 ),
-              
               ),
             ),
             Row(
@@ -36,21 +80,25 @@ class CardProductWidget extends StatelessWidget {
                 SizedBox(
                   height: 40,
                   child: GradientButtonWidget(
-                    label: 'ADD',
+                    label: !isLoading ? 'ADD' : '...',
                     gradient: const [
                       Color(0xff5F72E4),
                       Color(0xff805EE4),
                     ],
-                    func: () {},
+                    func: () {
+                      setState(() {
+                        addProduct(widget.product);
+                      });
+                    },
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: decrementQty,
                   icon: const Icon(Icons.remove),
                 ),
-                const Text('1'),
+                Text('$qty'),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: incrementQty,
                   icon: const Icon(Icons.add),
                 )
               ],
