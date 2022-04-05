@@ -9,7 +9,7 @@ class CardProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 200,
       width: 200,
       child: Card(
         child: Column(

@@ -5,6 +5,7 @@ import 'package:flutter_sb/app/modules/category/controllers/category_store.dart'
 import 'package:flutter_sb/app/modules/dashboard/components/bottom_bar_widget.dart';
 import 'package:flutter_sb/app/modules/foodstore/components/card_foodstore_header_widget.dart';
 import 'package:flutter_sb/app/modules/product/components/card_product_widget.dart';
+import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
 class FoodstoreDetailsPage extends StatefulWidget {
   final String title;
@@ -48,28 +49,16 @@ class FoodstoreDetailsPageState extends State<FoodstoreDetailsPage> {
                               height: constraints.maxHeight * 0.3,
                               width: constraints.maxWidth,
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: ListCategoryWidget(
-                                height: constraints.maxHeight * 0.1,
-                                width: constraints.maxWidth,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: SizedBox(
-                                height: constraints.maxHeight * 0.3,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) {
-                                    return const CardProductWidget();
-                                  },
+                            SingleChildScrollView(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                child: ListCategoryWidget(
+                                  width: constraints.maxWidth,
+                                  height: constraints.maxHeight * 0.55,
+                                  foodstoreId: widget.foodstoreId,
                                 ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),

@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/category/controllers/category_store.dart';
 import 'package:flutter_sb/app/modules/category/models/category_model.dart';
+import 'package:flutter_sb/app/modules/category/models/category_products_model.dart';
+import 'package:flutter_sb/app/modules/product/components/card_product_widget.dart';
+import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
 class ListCategoryWidget extends StatefulWidget {
+  final String foodstoreId;
   final String title;
   final double width;
   final double height;
@@ -12,6 +16,7 @@ class ListCategoryWidget extends StatefulWidget {
     this.title = "ListCategoryWidget",
     required this.width,
     required this.height,
+    required this.foodstoreId,
   }) : super(key: key);
 
   @override
@@ -21,46 +26,52 @@ class ListCategoryWidget extends StatefulWidget {
 class _ListCategoryWidgetState extends State<ListCategoryWidget> {
   final CategoryStore categoryController = Modular.get();
 
+  final List<Color> gradient = const [Color(0xff5F72E4), Color(0xff805EE4)];
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: categoryController.listAll(7),
+      future: categoryController
+          .listAllCategoriesWithProds(int.tryParse(widget.foodstoreId) ?? 0),
       builder: ((context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          List<CategoryModel> data = snapshot.data as List<CategoryModel>;
+          List<CategoryProductsModel> data =
+              snapshot.data as List<CategoryProductsModel>;
           return SizedBox(
-            width: widget.width,
             height: widget.height,
+            width: widget.width,
             child: ListView.builder(
-              scrollDirection: Axis.horizontal,
               itemCount: data.length,
-              itemBuilder: (context, index) {
-                return Row(
-                  children: [
-                    Container(
-                      height: 35,
-                      margin: const EdgeInsets.only(right: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color(0xff5F72E4),
-                            Color(0xff805EE4),
+              scrollDirection: Axis.vertical,
+              itemBuilder: ((context, index) => Row(
+                    children: [
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 50,
+                              width: widget.width,
+                              child: GradientButtonWidget(
+                                label: data[index].name ?? '',
+                                func: () {},
+                                gradient: gradient,
+                              ),
+                            ),
+                            SizedBox(
+                              width: widget.width,
+                              height: widget.height * 0.5,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: data[index].product?.length,
+                                itemBuilder: ((context, index) => const CardProductWidget()),
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            data[index].name,
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          )),
-                    ),
-                  ],
-                );
-              },
+                    ],
+                  )),
             ),
           );
         } else {
