@@ -37,17 +37,7 @@ class _CardProductWidgetState extends State<CardProductWidget> {
   }
 
   void addProduct(ProductModel product) {
-    setState(() {
-      isLoading = true;
-    });
-
-    for (var i = 0; i == qty; i++) {
-      bagController.addProduct(product);
-    }
-
-    setState(() {
-      isLoading = false;
-    });
+    bagController.addProduct(product);
   }
 
   @override
@@ -86,19 +76,21 @@ class _CardProductWidgetState extends State<CardProductWidget> {
                       Color(0xff805EE4),
                     ],
                     func: () {
-                      setState(() {
-                        addProduct(widget.product);
-                      });
+                      addProduct(widget.product);
                     },
                   ),
                 ),
                 IconButton(
-                  onPressed: decrementQty,
+                  onPressed: () {
+                    decrementQty();
+                  },
                   icon: const Icon(Icons.remove),
                 ),
                 Text('$qty'),
                 IconButton(
-                  onPressed: incrementQty,
+                  onPressed: () {
+                    incrementQty();
+                  },
                   icon: const Icon(Icons.add),
                 )
               ],
