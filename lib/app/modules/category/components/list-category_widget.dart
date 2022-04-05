@@ -7,12 +7,12 @@ class ListCategoryWidget extends StatefulWidget {
   final String title;
   final double width;
   final double height;
-  const ListCategoryWidget(
-      {Key? key,
-      this.title = "ListCategoryWidget",
-      required this.width,
-      required this.height})
-      : super(key: key);
+  const ListCategoryWidget({
+    Key? key,
+    this.title = "ListCategoryWidget",
+    required this.width,
+    required this.height,
+  }) : super(key: key);
 
   @override
   State<ListCategoryWidget> createState() => _ListCategoryWidgetState();

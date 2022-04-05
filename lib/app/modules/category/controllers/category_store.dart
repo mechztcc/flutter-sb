@@ -1,4 +1,5 @@
 import 'package:flutter_sb/app/modules/category/models/category_model.dart';
+import 'package:flutter_sb/app/modules/category/models/category_products_model.dart';
 import 'package:flutter_sb/app/modules/category/services/category_service.dart';
 import 'package:mobx/mobx.dart';
 
@@ -14,6 +15,16 @@ abstract class _CategoryStoreBase with Store {
   Future<List<CategoryModel>> listAll(int id) async {
     try {
       List<CategoryModel> response = await categoryService.listAll(id);
+      return response;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
+  Future<List<CategoryProductsModel>> listAllCategoriesWithProds(int id) async {
+    try {
+      List<CategoryProductsModel> response = await categoryService.listCategoriesWithProds(id);
       return response;
     } catch (e) {
       print(e);
