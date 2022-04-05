@@ -41,6 +41,7 @@ dependencies:
   build_runner: ^2.1.8
   validatorless: ^1.2.1
   shared_preferences: ^2.0.13
+  wave: ^0.2.0
 
 dev_dependencies:
   flutter_test:

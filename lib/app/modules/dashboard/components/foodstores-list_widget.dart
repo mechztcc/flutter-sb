@@ -3,6 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/foodstore/components/card-foodstore-list_widget.dart';
 import 'package:flutter_sb/app/modules/foodstore/controllers/foodstore_store.dart';
 import 'package:flutter_sb/app/modules/foodstore/models/foodstore_model.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 class FoodstoresListWidget extends StatefulWidget {
   final String title;
@@ -31,6 +33,7 @@ class _FoodstoresListWidgetState extends State<FoodstoresListWidget> {
               return Column(
                 children: [
                   CardFoodstoreListWidget(foodstore: data[index]),
+                  
                 ],
               );
             },
