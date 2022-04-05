@@ -12,7 +12,5 @@ abstract class _BagStoreBase with Store {
   @action
   void addProduct(ProductModel product) {
     products.add(product);
-    print(product);
-    print('oi');
   }
 }
