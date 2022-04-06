@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_sb/app/modules/product/controller/product_store.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
 class ProductDetailsPage extends StatefulWidget {
@@ -13,6 +15,8 @@ class ProductDetailsPage extends StatefulWidget {
 
 class ProductDetailsPageState extends State<ProductDetailsPage> {
   final List<Color> gradient = const [Color(0xff5F72E4), Color(0xff805EE4)];
+  final ProductStore controller = Modular.get();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,16 +42,31 @@ class ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                   Row(
                     children: const [
-                      Icon(Icons.star_rounded,
-                          color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_rounded,
-                          color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_rounded,
-                          color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_rounded,
-                          color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_border_rounded,
-                          color: Color(0xffFB6440), size: 30),
+                      Icon(
+                        Icons.star_rounded,
+                        color: Color(0xffFB6440),
+                        size: 30,
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: Color(0xffFB6440),
+                        size: 30,
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: Color(0xffFB6440),
+                        size: 30,
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: Color(0xffFB6440),
+                        size: 30,
+                      ),
+                      Icon(
+                        Icons.star_border_rounded,
+                        color: Color(0xffFB6440),
+                        size: 30,
+                      ),
                       Text('(225)', style: TextStyle(color: Color(0xffFB6440)))
                     ],
                   ),
