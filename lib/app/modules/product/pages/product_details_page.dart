@@ -34,7 +34,7 @@ class ProductDetailsPageState extends State<ProductDetailsPage> {
               padding: const EdgeInsets.all(10.0),
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     ClipRRect(

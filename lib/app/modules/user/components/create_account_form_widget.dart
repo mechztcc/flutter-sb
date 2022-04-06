@@ -8,9 +8,10 @@ import 'package:validatorless/validatorless.dart';
 class CreateAccountFormWidget extends StatefulWidget {
   final String title;
 
-  const CreateAccountFormWidget(
-      {Key? key, this.title = "CreateAccountFormWidget"})
-      : super(key: key);
+  const CreateAccountFormWidget({
+    Key? key,
+    this.title = "CreateAccountFormWidget",
+  }) : super(key: key);
 
   @override
   State<CreateAccountFormWidget> createState() =>
@@ -37,7 +38,6 @@ class _CreateAccountFormWidgetState
       setState(() {
         isSaving = false;
       });
-      Modular.to.pushNamed('login');
     }
   }
 

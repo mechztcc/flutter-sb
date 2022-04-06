@@ -16,8 +16,10 @@ abstract class _UserStoreBase with Store {
   Future<void> createAccount(String name, String email, String password) async {
     try {
       await userService.createAccount(name, email, password);
+      
+      Modular.to.pushNamed('login');
     } catch (e) {
-      print(e);
+      AsukaSnackbar.alert('Problemas ao criar conta').show();
     }
   }
 
@@ -25,8 +27,12 @@ abstract class _UserStoreBase with Store {
     try {
       var response = await userService.login(email, password);
       final prefs = await SharedPreferences.getInstance();
+
       prefs.setString('token', response.token);
       prefs.setString('name', response.name);
+
+      AsukaSnackbar.success('Logado com sucesso!').show();
+
       Modular.to.popAndPushNamed('/dashboard');
     } catch (e) {
       AsukaSnackbar.alert('Problemas ao realizar o login').show();
