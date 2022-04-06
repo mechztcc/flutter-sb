@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_sb/app/modules/user/models/user_model.dart';
 
 class UserRepository {
   final Dio dio;

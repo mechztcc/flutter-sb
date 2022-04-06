@@ -42,6 +42,7 @@ dependencies:
   validatorless: ^1.2.1
   shared_preferences: ^2.0.13
   wave: ^0.2.0
+  asuka: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:

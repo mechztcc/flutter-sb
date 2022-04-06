@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/user/components/custom_input_widget.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validatorless/validatorless.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,7 +30,6 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
       setState(() {
         isSaving = false;
       });
-      Modular.to.pushReplacementNamed('dashboard/');
     }
   }
 
