@@ -17,7 +17,13 @@ class ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: const [
+            Text('Detalhes do produto'),
+            Icon(Icons.fastfood),
+          ],
+        ),
       ),
       body: LayoutBuilder(
         builder: ((context, constraints) => Padding(
@@ -32,11 +38,16 @@ class ProductDetailsPageState extends State<ProductDetailsPage> {
                   ),
                   Row(
                     children: const [
-                      Icon(Icons.star_rounded, color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_rounded, color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_rounded, color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_rounded, color: Color(0xffFB6440), size: 30),
-                      Icon(Icons.star_border_rounded, color: Color(0xffFB6440), size: 30),
+                      Icon(Icons.star_rounded,
+                          color: Color(0xffFB6440), size: 30),
+                      Icon(Icons.star_rounded,
+                          color: Color(0xffFB6440), size: 30),
+                      Icon(Icons.star_rounded,
+                          color: Color(0xffFB6440), size: 30),
+                      Icon(Icons.star_rounded,
+                          color: Color(0xffFB6440), size: 30),
+                      Icon(Icons.star_border_rounded,
+                          color: Color(0xffFB6440), size: 30),
                       Text('(225)', style: TextStyle(color: Color(0xffFB6440)))
                     ],
                   ),
