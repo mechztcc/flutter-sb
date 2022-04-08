@@ -18,7 +18,7 @@ class UserModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => const CreateAccountPage()),
+    ChildRoute('/', child: (_, args) => CreateAccountPage()),
     ChildRoute('/login', child: (_, args) => const LoginPage()),
   ];
 }

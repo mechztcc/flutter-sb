@@ -58,7 +58,8 @@ class _CreateAccountFormWidgetState
               child: isSaving == true
                   ? Center(
                       child: LoadingAnimationWidget.inkDrop(
-                          color: const Color(0xff805EE4), size: 40))
+                          color: const Color(0xff805EE4), size: 40),
+                    )
                   : Column(
                       children: [
                         const Text(
