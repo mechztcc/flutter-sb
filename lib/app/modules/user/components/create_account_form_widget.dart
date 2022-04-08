@@ -3,15 +3,17 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/user/components/custom_input_widget.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
+import 'package:flutter_sb/app/modules/user/models/user_model.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:validatorless/validatorless.dart';
 
 class CreateAccountFormWidget extends StatefulWidget {
   final String title;
+  final Function addUser;
 
   const CreateAccountFormWidget({
     Key? key,
-    this.title = "CreateAccountFormWidget",
+    this.title = "CreateAccountFormWidget", required this.addUser,
   }) : super(key: key);
 
   @override
@@ -31,14 +33,8 @@ class _CreateAccountFormWidgetState
   void validateForm() async {
     var isValid = _formKey.currentState?.validate();
     if (isValid ?? false) {
-      setState(() {
-        isSaving = true;
-      });
-      await controller.createAccount(
-          nameEC.text, phoneEC.text, passwordEC.text);
-      setState(() {
-        isSaving = false;
-      });
+      UserModel user = UserModel(name: nameEC.text, email: phoneEC.text, password: passwordEC.text);
+      widget.addUser(user);
     }
   }
 
