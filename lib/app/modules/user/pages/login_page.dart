@@ -5,6 +5,7 @@ import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.da
 import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validatorless/validatorless.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -46,9 +47,8 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
             child: isSaving == true
                 ? Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CircularProgressIndicator(),
-                    Text('Enviando informações', style: TextStyle(fontWeight: FontWeight.bold),)
+                  children:  [
+                    LoadingAnimationWidget.inkDrop(color: const Color(0xff805EE4), size: 40)
                   ],
                 )
                 : Center(

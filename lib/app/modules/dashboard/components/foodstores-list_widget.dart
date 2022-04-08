@@ -3,8 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/foodstore/components/card-foodstore-list_widget.dart';
 import 'package:flutter_sb/app/modules/foodstore/controllers/foodstore_store.dart';
 import 'package:flutter_sb/app/modules/foodstore/models/foodstore_model.dart';
-import 'package:wave/config.dart';
-import 'package:wave/wave.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class FoodstoresListWidget extends StatefulWidget {
   final String title;
@@ -41,8 +40,8 @@ class _FoodstoresListWidgetState extends State<FoodstoresListWidget> {
             },
           );
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: LoadingAnimationWidget.inkDrop(color: const Color(0xff805EE4), size: 40),
           );
         }
       }),

@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/user/components/custom_input_widget.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:validatorless/validatorless.dart';
 
 class CreateAccountFormWidget extends StatefulWidget {
@@ -56,20 +57,7 @@ class _CreateAccountFormWidgetState
             child: SingleChildScrollView(
               child: isSaving == true
                   ? Center(
-                      child: Column(
-                        children: const [
-                          CircularProgressIndicator(),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Text(
-                              'Enviar informações',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: LoadingAnimationWidget.inkDrop(color: const Color(0xff805EE4), size: 40)
                     )
                   : Column(
                       children: [
