@@ -24,7 +24,7 @@ class _CreateAccountFormWidgetState
   final _formKey = GlobalKey<FormState>();
 
   final nameEC = TextEditingController();
-  final emailEC = TextEditingController();
+  final phoneEC = TextEditingController();
   final passwordEC = TextEditingController();
   var isSaving = false;
 
@@ -35,7 +35,7 @@ class _CreateAccountFormWidgetState
         isSaving = true;
       });
       await controller.createAccount(
-          nameEC.text, emailEC.text, passwordEC.text);
+          nameEC.text, phoneEC.text, passwordEC.text);
       setState(() {
         isSaving = false;
       });
@@ -91,7 +91,7 @@ class _CreateAccountFormWidgetState
                                 icon: const Icon(Icons.person),
                               ),
                               CustomInputWidget(
-                                controller: emailEC,
+                                controller: phoneEC,
                                 validator: Validatorless.multiple([
                                   Validatorless.required('Campo obrigatório'),
                                   Validatorless.number('Telefone inválido'),

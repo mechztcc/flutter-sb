@@ -13,9 +13,9 @@ abstract class _UserStoreBase with Store {
 
   _UserStoreBase(this.userService);
 
-  Future<void> createAccount(String name, String email, String password) async {
+  Future<void> createAccount(String name, String phone, String password) async {
     try {
-      await userService.createAccount(name, email, password);
+      await userService.createAccount(name, phone, password);
       
       Modular.to.pushNamed('login');
     } catch (e) {
@@ -23,9 +23,9 @@ abstract class _UserStoreBase with Store {
     }
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(String phone, String password) async {
     try {
-      var response = await userService.login(email, password);
+      var response = await userService.login(phone, password);
       final prefs = await SharedPreferences.getInstance();
 
       prefs.setString('token', response.token);

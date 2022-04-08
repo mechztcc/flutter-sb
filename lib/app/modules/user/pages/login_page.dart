@@ -3,9 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/user/components/custom_input_widget.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:validatorless/validatorless.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:validatorless/validatorless.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -16,7 +15,7 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends ModularState<LoginPage, UserStore> {
   final _formKey = GlobalKey<FormState>();
-  final emailEC = TextEditingController();
+  final phoneEC = TextEditingController();
   final passwordEC = TextEditingController();
   var isSaving = false;
   var isHidden = true;
@@ -28,7 +27,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
         isSaving = true;
       });
 
-      await controller.login(emailEC.text, passwordEC.text);
+      await controller.login(phoneEC.text, passwordEC.text);
       setState(() {
         isSaving = false;
       });
@@ -70,7 +69,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                               height: 20,
                             ),
                             CustomInputWidget(
-                              controller: emailEC,
+                              controller: phoneEC,
                               validator: Validatorless.multiple([
                                 Validatorless.number('Telefone inválido'),
                                 Validatorless.min(8, 'Número inválido'),

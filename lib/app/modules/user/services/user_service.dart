@@ -6,17 +6,17 @@ class UserService {
 
   UserService(this.userRepository);
 
-  Future<void> createAccount(String name, String email, String password) async {
+  Future<void> createAccount(String name, String phone, String password) async {
     try {
-      await userRepository.createAccount(name, email, password);
+      await userRepository.createAccount(name, phone, password);
     } catch (e) {
       throw Exception(e);
     }
   }
 
-  Future<UserModel> login(String email, String password) async {
+  Future<UserModel> login(String phone, String password) async {
     try {
-      var data = await userRepository.login(email, password);
+      var data = await userRepository.login(phone, password);
       UserModel user = UserModel.fromJson(data);
       return user;
     } catch (e) {
