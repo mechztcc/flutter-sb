@@ -18,9 +18,8 @@ class CreateAccountPage extends StatefulWidget {
   CreateAccountPageState createState() => CreateAccountPageState();
 }
 
-class CreateAccountPageState extends ModularState<CreateAccountPage, UserStore> {
-
-
+class CreateAccountPageState
+    extends ModularState<CreateAccountPage, UserStore> {
   UserModel? _user;
   AddressModel? _address;
 
@@ -41,7 +40,13 @@ class CreateAccountPageState extends ModularState<CreateAccountPage, UserStore> 
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) => Center(
-          child: widget.profile == true ?  CreateAccountFormWidget(addUser: addUser) : CreateAddressFormWidget(),
+          child: widget.profile == true
+              ? CreateAccountFormWidget(addUser: addUser)
+              : CreateAddressFormWidget(
+                  height: constraints.maxHeight * 0.6,
+                  width: constraints.maxWidth * 0.9,
+                  addAddress: addAddress,
+                ),
         ),
       ),
     );
