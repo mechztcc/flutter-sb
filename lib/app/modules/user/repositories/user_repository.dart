@@ -6,22 +6,22 @@ class UserRepository {
 
   UserRepository(this.dio);
 
-  Future<void> createAccount(String name, String email, String password) async {
+  Future<void> createAccount(String name, String phone, String password) async {
     try {
       await dio.post(
-        '$url/users/create',
-        data: {'name': name, 'email': email, 'password': password},
+        '$url/customers/create',
+        data: {'name': name, 'phone': phone, 'password': password},
       );
     } on DioError catch (e) {
       throw Exception(e.response);
     }
   }
 
-  Future<Map<String, dynamic>> login(String email, String password) async {
+  Future<Map<String, dynamic>> login(String phone, String password) async {
     try {
       var response = await dio.post(
         '$url/auth',
-        data: { 'email': email, 'password': password },
+        data: { 'phone': phone, 'password': password },
       );
       return response.data;
     } on DioError catch (e) {
