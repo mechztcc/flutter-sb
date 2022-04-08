@@ -6,14 +6,16 @@ class CustomInputWidget extends StatelessWidget {
   final Icon icon;
   final dynamic validator;
   final TextEditingController controller;
-  const CustomInputWidget(
-      {Key? key,
-      this.title = "CustomInputWidget",
-      required this.label,
-      required this.icon,
-      required this.validator,
-      required this.controller})
-      : super(key: key);
+  bool? obscure;
+  CustomInputWidget({
+    Key? key,
+    this.title = "CustomInputWidget",
+    required this.label,
+    required this.icon,
+    required this.validator,
+    required this.controller,
+    this.obscure
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class CustomInputWidget extends StatelessWidget {
       child: TextFormField(
         validator: validator,
         controller: controller,
+        obscureText: obscure ?? false,
         decoration: InputDecoration(
           label: Text(label),
           border: OutlineInputBorder(
@@ -29,7 +32,9 @@ class CustomInputWidget extends StatelessWidget {
           ),
           suffixIcon: IconButton(
             icon: icon,
-            onPressed: () {},
+            onPressed: () {
+              
+            },
           ),
         ),
       ),

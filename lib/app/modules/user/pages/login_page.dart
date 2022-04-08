@@ -19,6 +19,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
   final emailEC = TextEditingController();
   final passwordEC = TextEditingController();
   var isSaving = false;
+  var isHidden = true;
 
   void validateForm() async {
     final isValid = _formKey.currentState?.validate();
@@ -37,7 +38,6 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) => Center(
           child: Container(
@@ -46,13 +46,14 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
             padding: const EdgeInsets.only(top: 30),
             child: isSaving == true
                 ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:  [
-                    LoadingAnimationWidget.inkDrop(color: const Color(0xff805EE4), size: 40)
-                  ],
-                )
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LoadingAnimationWidget.inkDrop(
+                          color: const Color(0xff805EE4), size: 40)
+                    ],
+                  )
                 : Center(
-                  child: Form(
+                    child: Form(
                       key: _formKey,
                       child: SingleChildScrollView(
                         child: Column(
@@ -71,8 +72,9 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                             CustomInputWidget(
                               controller: emailEC,
                               validator: Validatorless.multiple([
-                                Validatorless.email('E-mail inválido'),
-                                Validatorless.required('E-mail é obrigatório')
+                                Validatorless.number('Telefone inválido'),
+                                Validatorless.min(8, 'Número inválido'),
+                                Validatorless.required('Telefone é obrigatório')
                               ]),
                               icon: const Icon(Icons.phone),
                               label: 'Telefone',
@@ -82,11 +84,14 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                             ),
                             CustomInputWidget(
                               label: 'Senha',
+                              obscure: true,
                               icon: const Icon(Icons.lock),
                               validator: Validatorless.multiple([
                                 Validatorless.required('Senha é obrigatório'),
-                                Validatorless.min(6,
-                                    'A senha deve conter no mínimo 6 caracteres')
+                                Validatorless.min(
+                                  6,
+                                  'A senha deve conter no mínimo 6 caracteres',
+                                )
                               ]),
                               controller: passwordEC,
                             ),
@@ -133,7 +138,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                         ),
                       ),
                     ),
-                ),
+                  ),
           ),
         ),
       ),
