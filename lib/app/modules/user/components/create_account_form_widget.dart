@@ -57,8 +57,8 @@ class _CreateAccountFormWidgetState
             child: SingleChildScrollView(
               child: isSaving == true
                   ? Center(
-                      child: LoadingAnimationWidget.inkDrop(color: const Color(0xff805EE4), size: 40)
-                    )
+                      child: LoadingAnimationWidget.inkDrop(
+                          color: const Color(0xff805EE4), size: 40))
                   : Column(
                       children: [
                         const Text(
@@ -85,7 +85,8 @@ class _CreateAccountFormWidgetState
                               CustomInputWidget(
                                 controller: nameEC,
                                 validator: Validatorless.required(
-                                    'Nome é Obrigatorio'),
+                                  'Nome é Obrigatorio',
+                                ),
                                 label: 'Nome completo',
                                 icon: const Icon(Icons.person),
                               ),
@@ -93,10 +94,11 @@ class _CreateAccountFormWidgetState
                                 controller: emailEC,
                                 validator: Validatorless.multiple([
                                   Validatorless.required('Campo obrigatório'),
-                                  Validatorless.email('E-mail inválido')
+                                  Validatorless.number('Telefone inválido'),
+                                  Validatorless.min(8, 'Telefone inválido')
                                 ]),
-                                label: 'Email',
-                                icon: const Icon(Icons.email),
+                                label: 'Telefone',
+                                icon: const Icon(Icons.phone),
                               ),
                               CustomInputWidget(
                                 controller: passwordEC,
