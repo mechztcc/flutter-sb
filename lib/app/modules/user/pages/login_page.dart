@@ -42,7 +42,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
         builder: (BuildContext context, BoxConstraints constraints) => Center(
           child: Container(
             width: constraints.maxWidth * 0.8,
-            height: constraints.maxHeight * 0.7,
+            height: constraints.maxHeight * 0.9,
             padding: const EdgeInsets.only(top: 30),
             child: isSaving == true
                 ? Column(
@@ -57,6 +57,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
+                            Image.asset('assets/logo.png'),
                             const Text(
                               'Bem-vindo novamente',
                               style: TextStyle(
@@ -73,8 +74,8 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                                 Validatorless.email('E-mail inválido'),
                                 Validatorless.required('E-mail é obrigatório')
                               ]),
-                              icon: const Icon(Icons.person),
-                              label: 'E-mail',
+                              icon: const Icon(Icons.phone),
+                              label: 'Telefone',
                             ),
                             const SizedBox(
                               height: 10,
