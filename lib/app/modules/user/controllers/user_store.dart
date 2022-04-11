@@ -36,6 +36,7 @@ abstract class _UserStoreBase with Store {
 
       Modular.to.popAndPushNamed('/dashboard');
     } catch (e) {
+      print(e);
       AsukaSnackbar.alert('Problemas ao realizar o login').show();
     }
   }

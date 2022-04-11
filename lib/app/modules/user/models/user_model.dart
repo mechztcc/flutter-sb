@@ -10,9 +10,8 @@ class UserModel {
   UserModel({this.name, this.phone, this.password, this.address});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    phone = json['phone'];
-    password = json['password'];
+    name = json['customer']['name'];
+    phone = json['customer']['phone'];
     token = json['token'];
     address =
         json['address'] != null ?  AddressModel.fromJson(json['address']) : null;

@@ -26,7 +26,7 @@ class UserRepository {
   Future<Map<String, dynamic>> login(String phone, String password) async {
     try {
       var response = await dio.post(
-        '$url/auth',
+        '$url/customers/auth',
         data: {'phone': phone, 'password': password},
       );
       return response.data;
