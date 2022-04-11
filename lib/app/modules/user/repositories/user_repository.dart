@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_sb/app/modules/user/models/user_model.dart';
 
 class UserRepository {
   final Dio dio;
@@ -6,11 +7,16 @@ class UserRepository {
 
   UserRepository(this.dio);
 
-  Future<void> createAccount(String name, String phone, String password) async {
+  Future<void> createAccount(UserModel user) async {
     try {
       await dio.post(
         '$url/customers/create',
-        data: {'name': name, 'phone': phone, 'password': password},
+        data: {
+          'name': user.name,
+          'phone': user.phone,
+          'password': user.password,
+          'address': user.address
+        },
       );
     } on DioError catch (e) {
       throw Exception(e.response);
@@ -21,7 +27,7 @@ class UserRepository {
     try {
       var response = await dio.post(
         '$url/auth',
-        data: { 'phone': phone, 'password': password },
+        data: {'phone': phone, 'password': password},
       );
       return response.data;
     } on DioError catch (e) {

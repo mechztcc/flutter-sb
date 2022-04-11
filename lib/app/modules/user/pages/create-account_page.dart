@@ -54,7 +54,7 @@ class CreateAccountPageState
     var data = jsonEncode(_user);
     print(data);
 
-    
+    controller.createAccount(_user!);
 
     setState(() {
       widget.isLoading = false;

@@ -6,9 +6,9 @@ class UserService {
 
   UserService(this.userRepository);
 
-  Future<void> createAccount(String name, String phone, String password) async {
+  Future<void> createAccount(UserModel user) async {
     try {
-      await userRepository.createAccount(name, phone, password);
+      await userRepository.createAccount(user);
     } catch (e) {
       throw Exception(e);
     }

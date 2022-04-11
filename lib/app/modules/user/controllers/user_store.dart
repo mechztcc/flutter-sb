@@ -1,5 +1,6 @@
 import 'package:asuka/asuka.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_sb/app/modules/user/models/user_model.dart';
 import 'package:flutter_sb/app/modules/user/services/user_service.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,9 +14,9 @@ abstract class _UserStoreBase with Store {
 
   _UserStoreBase(this.userService);
 
-  Future<void> createAccount(String name, String phone, String password) async {
+  Future<void> createAccount(UserModel user) async {
     try {
-      await userService.createAccount(name, phone, password);
+      await userService.createAccount(user);
       
       Modular.to.pushNamed('login');
     } catch (e) {
