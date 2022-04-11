@@ -32,7 +32,16 @@ class CreateAccountPageState
   }
 
   void addAddress(AddressModel address) {
-    _address = address;
+    setState(() {
+      _address = address;
+    });
+  }
+
+  void back() {
+    setState(() {
+      widget.address = false;
+      widget.profile = true;
+    });
   }
 
   @override
@@ -46,6 +55,7 @@ class CreateAccountPageState
                   height: constraints.maxHeight * 0.6,
                   width: constraints.maxWidth * 0.9,
                   addAddress: addAddress,
+                  back: back,
                 ),
         ),
       ),
