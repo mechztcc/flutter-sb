@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_sb/app/modules/bag/bag_module.dart';
 import 'package:flutter_sb/app/modules/category/category_module.dart';
 import 'package:flutter_sb/app/modules/dashboard/dashboard_module.dart';
 import 'package:flutter_sb/app/modules/foodstore/foodstore_module.dart';
@@ -14,7 +15,8 @@ class AppModule extends Module {
     FoodstoreModule(),
     DashboardModule(),
     CategoryModule(),
-    ProductModule()
+    ProductModule(),
+    BagModule()
   ];
 
   @override
@@ -23,5 +25,6 @@ class AppModule extends Module {
     ModuleRoute('/dashboard', module: DashboardModule()),
     ModuleRoute('/foodstore', module: FoodstoreModule()),
     ModuleRoute('/product', module: ProductModule()),
+    ModuleRoute('/bag', module: BagModule()),
   ];
 }

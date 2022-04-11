@@ -1,6 +1,6 @@
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_sb/app/modules/bag/bag_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_sb/app/modules/product/controller/bag_store.dart';
 
 class BagPage extends StatefulWidget {
   final String title;
@@ -8,6 +8,7 @@ class BagPage extends StatefulWidget {
   @override
   BagPageState createState() => BagPageState();
 }
+
 class BagPageState extends State<BagPage> {
   final BagStore store = Modular.get();
 
