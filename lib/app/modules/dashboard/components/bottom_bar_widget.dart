@@ -21,9 +21,13 @@ class BottomBarWidget extends StatelessWidget {
           label: 'Bolsa',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Configuraçoes',
+          icon: Icon(Icons.favorite_border),
+          label: 'Favoritos',
         ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.person),
+        //   label: 'Configuraçoes',
+        // ),
       ],
       onTap: (value) {
         value == 1 ? Modular.to.pushNamed('/dashboard/bag') : '';
