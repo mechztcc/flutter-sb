@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_sb/app/modules/address/models/address_model.dart';
@@ -7,9 +9,13 @@ import 'package:flutter_sb/app/modules/user/controllers/user_store.dart';
 import 'package:flutter_sb/app/modules/user/models/user_model.dart';
 
 class CreateAccountPage extends StatefulWidget {
+  
   final String title;
   bool profile = true;
   bool address = false;
+
+  bool isLoading = false;
+
   CreateAccountPage({
     Key? key,
     this.title = 'CreateAccountPage',
@@ -20,6 +26,7 @@ class CreateAccountPage extends StatefulWidget {
 
 class CreateAccountPageState
     extends ModularState<CreateAccountPage, UserStore> {
+
   UserModel? _user;
   AddressModel? _address;
 
@@ -33,7 +40,24 @@ class CreateAccountPageState
 
   void addAddress(AddressModel address) {
     setState(() {
-      _address = address;
+      _user!.address = address;
+    });
+    submitData();
+  }
+
+  void submitData() {
+    setState(() {
+      widget.isLoading = true;
+    });
+
+
+    var data = jsonEncode(_user);
+    print(data);
+
+    
+
+    setState(() {
+      widget.isLoading = false;
     });
   }
 
@@ -52,7 +76,7 @@ class CreateAccountPageState
           child: widget.profile == true
               ? CreateAccountFormWidget(addUser: addUser)
               : CreateAddressFormWidget(
-                  height: constraints.maxHeight * 0.6,
+                  height: constraints.maxHeight * 0.8,
                   width: constraints.maxWidth * 0.9,
                   addAddress: addAddress,
                   back: back,

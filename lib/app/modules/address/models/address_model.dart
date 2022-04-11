@@ -1,15 +1,33 @@
 class AddressModel {
-  final int id;
-  final String zip_code;
-  final String number;
-  final String city;
-  final String state;
+  String? zipCode;
+  String? street;
+  String? number;
+  String? city;
+  String? state;
 
   AddressModel({
-    required this.id,
-    required this.zip_code,
-    required this.number,
-    required this.city,
-    required this.state,
+    this.zipCode,
+    this.street,
+    this.number,
+    this.city,
+    this.state,
   });
+
+  AddressModel.fromJson(Map<String, dynamic> json) {
+    zipCode = json['zipcode'];
+    street = json['street'];
+    number = json['number'];
+    city = json['city'];
+    state = json['state'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['zip_code'] = zipCode;
+    data['street'] = street;
+    data['number'] = number;
+    data['city'] = city;
+    data['state'] = state;
+    return data;
+  }
 }

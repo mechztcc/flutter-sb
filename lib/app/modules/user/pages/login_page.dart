@@ -48,7 +48,7 @@ class LoginPageState extends ModularState<LoginPage, UserStore> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       LoadingAnimationWidget.inkDrop(
-                          color: const Color(0xff805EE4), size: 40)
+                          color: const Color(0xff805EE4), size: 40),
                     ],
                   )
                 : Center(

@@ -33,7 +33,7 @@ class _CreateAccountFormWidgetState
   void validateForm() async {
     var isValid = _formKey.currentState?.validate();
     if (isValid ?? false) {
-      UserModel user = UserModel(name: nameEC.text, email: phoneEC.text, password: passwordEC.text);
+      UserModel user = UserModel(name: nameEC.text, phone: phoneEC.text, password: passwordEC.text);
       widget.addUser(user);
     }
   }

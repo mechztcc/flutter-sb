@@ -29,7 +29,7 @@ abstract class _UserStoreBase with Store {
       final prefs = await SharedPreferences.getInstance();
 
       prefs.setString('token', response.token!);
-      prefs.setString('name', response.name);
+      prefs.setString('name', response.name!);
 
       AsukaSnackbar.success('Logado com sucesso!').show();
 
