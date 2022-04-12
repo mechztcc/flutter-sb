@@ -1,3 +1,4 @@
+import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
 import 'package:flutter_sb/app/modules/bag/repositories/bag_repository.dart';
 
 class BagService {
@@ -6,9 +7,10 @@ class BagService {
   BagService({required this.bagRepository});
 
 
-  Future<void> create(int customer_id) async {
+  Future<BagModel> create() async {
     try {
-      await bagRepository.create(customer_id);
+      BagModel bag = await bagRepository.create();
+      return bag;
 
     } catch (e) {
       throw Exception(e);

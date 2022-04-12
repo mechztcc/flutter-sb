@@ -30,7 +30,7 @@ class BottomBarWidget extends StatelessWidget {
         // ),
       ],
       onTap: (value) {
-        value == 1 ? Modular.to.pushNamed('/dashboard/bag') : '';
+        value == 1 ? Modular.to.pushNamed('/bag') : '';
       },
     );
   }

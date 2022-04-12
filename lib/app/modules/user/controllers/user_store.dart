@@ -31,6 +31,7 @@ abstract class _UserStoreBase with Store {
 
       prefs.setString('token', response.token!);
       prefs.setString('name', response.name!);
+      prefs.setInt('id', response.id!);
 
       AsukaSnackbar.success('Logado com sucesso!').show();
 

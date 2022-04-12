@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
 
 class BagRepository {
   final Dio dio;
@@ -6,9 +7,13 @@ class BagRepository {
 
   BagRepository({required this.dio});
 
-  Future<void> create(int customer_id) async {
+  Future<BagModel> create() async {
     try {
-      var response = await  dio.post('$url/create');
+      var response = await dio.post('$url/create');
+
+      BagModel bag = BagModel.fromJson(response.data);
+
+      return bag;
 
     } on DioError catch (e) {
       throw Exception(e.response);

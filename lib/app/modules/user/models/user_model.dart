@@ -1,6 +1,7 @@
 import 'package:flutter_sb/app/modules/address/models/address_model.dart';
 
 class UserModel {
+  int? id;
   String? name;
   String? phone;
   String? password;
@@ -10,6 +11,7 @@ class UserModel {
   UserModel({this.name, this.phone, this.password, this.address});
 
   UserModel.fromJson(Map<String, dynamic> json) {
+    id = json['customer']['id'];
     name = json['customer']['name'];
     phone = json['customer']['phone'];
     token = json['token'];

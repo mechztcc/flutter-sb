@@ -1,5 +1,7 @@
+import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
 import 'package:flutter_sb/app/modules/bag/services/bag_service.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'bag_store.g.dart';
 
@@ -10,10 +12,14 @@ abstract class _BagStoreBase with Store {
 
   _BagStoreBase({required this.bagService});
 
-  Future<void> create(int customer_id) async {
+  Future<bool> create() async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
-      await bagService.create(customer_id);
+      BagModel bag = await bagService.create();
+      return true;
     } catch (e) {
+      return false;
       print(e);
     }
   }
