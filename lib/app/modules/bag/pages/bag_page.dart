@@ -35,39 +35,36 @@ class BagPageState extends State<BagPage> {
         builder: ((context, constraints) => Column(
               children: [
                 Expanded(
-                  child: SizedBox(
-                    width: constraints.maxWidth,
-                    child: FutureBuilder(
-                      future: controller.findBag(),
-                      builder: ((context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done) {
-                          BagModel data = snapshot.data as BagModel;
-                          return ListView.builder(
-                            itemCount: data.items?.length ?? 0,
-                            itemBuilder: (context, index) {
-                              if (data.items!.isNotEmpty) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
-                                  child: BagItemWidget(
-                                    item: data.items![index],
-                                    height: 150,
-                                    width: constraints.maxWidth,
-                                  ),
-                                );
-                              } else {
-                                return const Text('Sua bolsa está vazia');
-                              }
-                            },
-                          );
-                        } else {
-                          return LoadingAnimationWidget.inkDrop(
-                            color: const Color(0xff805EE4),
-                            size: 40,
-                          );
-                        }
-                      }),
-                    ),
+                  child: FutureBuilder(
+                    future: controller.findBag(),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        BagModel data = snapshot.data as BagModel;
+                        return ListView.builder(
+                          itemCount: data.items?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            if (data.items!.isNotEmpty) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: BagItemWidget(
+                                  item: data.items![index],
+                                  height: 150,
+                                  width: constraints.maxWidth,
+                                ),
+                              );
+                            } else {
+                              return const Text('Sua bolsa está vazia');
+                            }
+                          },
+                        );
+                      } else {
+                        return LoadingAnimationWidget.inkDrop(
+                          color: const Color(0xff805EE4),
+                          size: 40,
+                        );
+                      }
+                    }),
                   ),
                 ),
                 BottomBarWidget()

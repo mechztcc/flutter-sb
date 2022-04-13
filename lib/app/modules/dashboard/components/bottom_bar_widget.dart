@@ -23,14 +23,11 @@ class BottomBarWidget extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite_border),
           label: 'Favoritos',
-        ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.person),
-        //   label: 'Configuraçoes',
-        // ),
+        )
       ],
       onTap: (value) {
-        value == 1 ? Modular.to.pushNamed('/bag') : '';
+        value == 1 ? Modular.to.pushNamed('/bag/') : '';
+        value == 0 ? Modular.to.pushReplacementNamed('/dashboard/') : '';
       },
     );
   }
