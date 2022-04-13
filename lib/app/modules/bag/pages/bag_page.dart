@@ -4,6 +4,7 @@ import 'package:flutter_sb/app/modules/bag/components/bag_item_list_widget.dart'
 import 'package:flutter_sb/app/modules/bag/components/bag_item_widget.dart';
 import 'package:flutter_sb/app/modules/bag/controllers/bag_store.dart';
 import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
+import 'package:flutter_sb/app/modules/dashboard/components/bottom_bar_widget.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -30,40 +31,48 @@ class BagPageState extends State<BagPage> {
           children: const [Text('Minhas compras'), Icon(Icons.shopify_rounded)],
         ),
       ),
-      body: Center(
-        child: FutureBuilder(
-          initialData: Text('Sua bolsa está vazia'),
-          future: controller.findBag(),
-          builder: ((context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              BagModel data = snapshot.data as BagModel;
-              return ListView.builder(
-                itemCount: data.items?.length ?? 0,
-                itemBuilder: (context, index) {
-                  if (data.items!.isNotEmpty) {
-                    return LayoutBuilder(
-                      builder: ((context, constraints) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        child: BagItemWidget(
-                              item: data.items![index],
-                              height: 150,
-                              width: constraints.maxWidth,
-                            ),
-                      )),
-                    );
-                  } else {
-                    return const Text('Sua bolsa está vazia');
-                  }
-                },
-              );
-            } else {
-              return LoadingAnimationWidget.inkDrop(
-                color: const Color(0xff805EE4),
-                size: 40,
-              );
-            }
-          }),
-        ),
+      body: LayoutBuilder(
+        builder: ((context, constraints) => Column(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    width: constraints.maxWidth,
+                    child: FutureBuilder(
+                      future: controller.findBag(),
+                      builder: ((context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          BagModel data = snapshot.data as BagModel;
+                          return ListView.builder(
+                            itemCount: data.items?.length ?? 0,
+                            itemBuilder: (context, index) {
+                              if (data.items!.isNotEmpty) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  child: BagItemWidget(
+                                    item: data.items![index],
+                                    height: 150,
+                                    width: constraints.maxWidth,
+                                  ),
+                                );
+                              } else {
+                                return const Text('Sua bolsa está vazia');
+                              }
+                            },
+                          );
+                        } else {
+                          return LoadingAnimationWidget.inkDrop(
+                            color: const Color(0xff805EE4),
+                            size: 40,
+                          );
+                        }
+                      }),
+                    ),
+                  ),
+                ),
+                BottomBarWidget()
+              ],
+            )),
       ),
     );
   }
