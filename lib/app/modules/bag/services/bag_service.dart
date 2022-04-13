@@ -16,4 +16,14 @@ class BagService {
       throw Exception(e);
     }
   }
+
+
+  Future<BagModel> findBag() async {
+    try {
+      BagModel bag = await bagRepository.find();
+      return bag;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }
