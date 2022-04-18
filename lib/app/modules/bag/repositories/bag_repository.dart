@@ -43,4 +43,20 @@ class BagRepository {
       throw Exception(e.response);
     }
   }
+
+  Future<void> clearBag() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+
+      String? token = prefs.getString('token');
+      dio.options.headers['authorization'] = 'Bearer $token';
+
+      var response = await dio.delete('$url/clear');
+      
+    } on DioError catch (e) {
+       AsukaSnackbar.alert('Falha ao conectar com servidor').show();
+      print(e);
+        throw Exception(e.response);
+    }
+  }
 }
