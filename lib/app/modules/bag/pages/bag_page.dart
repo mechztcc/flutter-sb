@@ -22,6 +22,8 @@ class BagPage extends StatefulWidget {
 class BagPageState extends State<BagPage> {
   final BagStore controller = Modular.get();
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +82,7 @@ class BagPageState extends State<BagPage> {
                   ],
                   func: () async {
                     await controller.clearBag();
+                    setState(() {});
                   },
                 ),
                 const BottomBarWidget()
