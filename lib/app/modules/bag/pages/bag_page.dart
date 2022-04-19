@@ -31,7 +31,6 @@ class BagPageState extends State<BagPage> {
   void initState() {
     super.initState();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +84,12 @@ class BagPageState extends State<BagPage> {
                     }),
                   ),
                 ),
-                Text('Total ${controller.total.toStringAsFixed(2)}'),
+                Text(
+                  'Total ${controller.total.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
                 GradientButtonWidget(
                   label: 'Esvaziar Bolsa',
                   gradient: const [
