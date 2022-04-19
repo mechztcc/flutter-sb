@@ -43,4 +43,12 @@ class BagService {
       throw Exception(e);
     }
   }
+
+  Future<void> removeItem(int itemId) async {
+    try {
+      await bagRepository.removeItem(itemId);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

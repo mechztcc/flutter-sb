@@ -22,7 +22,10 @@ class BagPage extends StatefulWidget {
 class BagPageState extends State<BagPage> {
   final BagStore controller = Modular.get();
 
-
+  void removeItem(int itemId) async {
+    controller.removeItem(itemId);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +61,7 @@ class BagPageState extends State<BagPage> {
                                   item: data.items![index],
                                   height: 150,
                                   width: constraints.maxWidth,
+                                  removeItem: removeItem,
                                 ),
                               );
                             } else {

@@ -53,4 +53,13 @@ abstract class _BagStoreBase with Store {
       throw Exception('Error');
     }
   }
+
+  Future<void> removeItem(int itemId) async {
+    try {
+      await bagService.removeItem(itemId);
+    } catch (e) {
+      AsukaSnackbar.alert('Error!').show();
+      throw Exception('Error');
+    }
+  }
 }

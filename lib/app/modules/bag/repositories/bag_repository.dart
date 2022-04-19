@@ -68,11 +68,22 @@ class BagRepository {
         "price": prod.price,
         "size": prod.size
       });
-
-
     } on DioError catch (e) {
       AsukaSnackbar.alert('Falha ao conectar com servidor').show();
       print(e);
+      throw Exception(e.response);
+    }
+  }
+
+  Future<void> removeItem(int itemId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+
+      String? token = prefs.getString('token');
+      dio.options.headers['authorization'] = 'Bearer $token';
+
+      await dio.delete('$url/remove-item', data: {"item_id": itemId});
+    } on DioError catch (e) {
       throw Exception(e.response);
     }
   }

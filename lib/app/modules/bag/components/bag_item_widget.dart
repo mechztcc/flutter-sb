@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_sb/app/modules/bag/controllers/bag_store.dart';
 import 'package:flutter_sb/app/modules/bag/model/bag_item.dart';
 
 class BagItemWidget extends StatelessWidget {
@@ -6,16 +8,18 @@ class BagItemWidget extends StatelessWidget {
   final BagItem item;
   final double width;
   final double height;
+  final Function removeItem;
   const BagItemWidget({
     Key? key,
     this.title = "BagItemWidget",
     required this.item,
     required this.width,
-    required this.height,
+    required this.height, required this.removeItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
       child: Card(
@@ -49,7 +53,9 @@ class BagItemWidget extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await removeItem(item.id);
+                        },
                         icon: const Icon(
                           Icons.delete_forever,
                           color: Color(0xffFB6440),
