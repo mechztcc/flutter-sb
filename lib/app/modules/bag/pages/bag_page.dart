@@ -28,7 +28,10 @@ class BagPageState extends State<BagPage> {
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [Text('Minhas compras'), Icon(Icons.shopify_rounded)],
+          children: const [
+            Text('Minhas compras'),
+            Icon(Icons.shopify_rounded),
+          ],
         ),
       ),
       body: LayoutBuilder(
@@ -46,7 +49,9 @@ class BagPageState extends State<BagPage> {
                             if (data.items!.isNotEmpty) {
                               return Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 5),
+                                  horizontal: 10,
+                                  vertical: 5,
+                                ),
                                 child: BagItemWidget(
                                   item: data.items![index],
                                   height: 150,
@@ -67,7 +72,17 @@ class BagPageState extends State<BagPage> {
                     }),
                   ),
                 ),
-                BottomBarWidget()
+                GradientButtonWidget(
+                  label: 'Esvaziar Bolsa',
+                  gradient: const [
+                    Color(0xffFB6440),
+                    Color(0xffFBAF40),
+                  ],
+                  func: () async {
+                    await controller.clearBag();
+                  },
+                ),
+                const BottomBarWidget()
               ],
             )),
       ),

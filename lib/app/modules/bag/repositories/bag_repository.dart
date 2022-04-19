@@ -1,6 +1,7 @@
 import 'package:asuka/asuka.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
+import 'package:flutter_sb/app/modules/product/models/product_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BagRepository {
@@ -11,22 +12,18 @@ class BagRepository {
 
   Future<BagModel> create() async {
     try {
-      
       var response = await dio.post('$url/create');
 
       BagModel bag = BagModel.fromJson(response.data);
 
       return bag;
-
     } on DioError catch (e) {
       throw Exception(e.response);
     }
   }
 
-
   Future<BagModel> find() async {
     try {
-
       final prefs = await SharedPreferences.getInstance();
 
       String? token = prefs.getString('token');
@@ -36,7 +33,6 @@ class BagRepository {
 
       BagModel bag = BagModel.fromJson(response.data);
       return bag;
-
     } on DioError catch (e) {
       AsukaSnackbar.alert('Falha ao conectar com servidor').show();
       print(e);
@@ -52,11 +48,33 @@ class BagRepository {
       dio.options.headers['authorization'] = 'Bearer $token';
 
       var response = await dio.delete('$url/clear');
-      
     } on DioError catch (e) {
-       AsukaSnackbar.alert('Falha ao conectar com servidor').show();
+      AsukaSnackbar.alert('Falha ao conectar com servidor').show();
       print(e);
-        throw Exception(e.response);
+      throw Exception(e.response);
+    }
+  }
+
+  Future<BagModel> addItem(ProductModel prod) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+
+      String? token = prefs.getString('token');
+      dio.options.headers['authorization'] = 'Bearer $token';
+
+      var response = await dio.post('$url/add-item', data: {
+        "id": prod.id,
+        "name": prod.name,
+        "price": prod.price,
+        "size": prod.size
+      });
+
+      return response.data;
+
+    } on DioError catch (e) {
+      AsukaSnackbar.alert('Falha ao conectar com servidor').show();
+      print(e);
+      throw Exception(e.response);
     }
   }
 }

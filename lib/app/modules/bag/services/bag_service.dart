@@ -1,5 +1,6 @@
 import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
 import 'package:flutter_sb/app/modules/bag/repositories/bag_repository.dart';
+import 'package:flutter_sb/app/modules/product/models/product_model.dart';
 
 class BagService {
   final BagRepository bagRepository;
@@ -22,6 +23,23 @@ class BagService {
     try {
       BagModel bag = await bagRepository.find();
       return bag;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<BagModel> addItem(ProductModel prod) async {
+    try {
+      BagModel bag = await bagRepository.addItem(prod);
+      return bag;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<void> clearBag() async {
+    try {
+      await bagRepository.clearBag();
     } catch (e) {
       throw Exception(e);
     }
