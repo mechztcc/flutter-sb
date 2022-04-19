@@ -1,6 +1,7 @@
 import 'package:asuka/asuka.dart';
 import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
 import 'package:flutter_sb/app/modules/bag/services/bag_service.dart';
+import 'package:flutter_sb/app/modules/product/models/product_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,11 +26,28 @@ abstract class _BagStoreBase with Store {
     }
   }
 
-
   Future<BagModel> findBag() async {
     try {
       BagModel bag = await bagService.findBag();
       return bag;
+    } catch (e) {
+      AsukaSnackbar.alert('Error!').show();
+      throw Exception('Error');
+    }
+  }
+
+  Future<void> addItem(ProductModel prod) async {
+    try {
+      BagModel bag = await bagService.addItem(prod);
+    } catch (e) {
+      AsukaSnackbar.alert('Error!').show();
+      throw Exception('Error');
+    }
+  }
+
+  Future<void> clearBag() async {
+    try {
+      await bagService.clearBag();
     } catch (e) {
       AsukaSnackbar.alert('Error!').show();
       throw Exception('Error');
