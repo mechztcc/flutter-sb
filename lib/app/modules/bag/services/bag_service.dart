@@ -51,4 +51,15 @@ class BagService {
       throw Exception(e);
     }
   }
+
+  Future<int> total() async {
+    try {
+      var response = await bagRepository.total();
+      print(response['total']);
+      return response['total'] as int;
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    }
+  }
 }

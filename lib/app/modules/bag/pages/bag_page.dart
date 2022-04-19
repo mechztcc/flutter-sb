@@ -28,7 +28,14 @@ class BagPageState extends State<BagPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+  
+
+  @override
   Widget build(BuildContext context) {
+    controller.getTotal();
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -78,6 +85,7 @@ class BagPageState extends State<BagPage> {
                     }),
                   ),
                 ),
+                Text('Total ${controller.total.toStringAsFixed(2)}'),
                 GradientButtonWidget(
                   label: 'Esvaziar Bolsa',
                   gradient: const [

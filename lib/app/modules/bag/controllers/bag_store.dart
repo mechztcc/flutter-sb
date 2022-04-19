@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:asuka/asuka.dart';
 import 'package:flutter_sb/app/modules/bag/model/bag_model.dart';
 import 'package:flutter_sb/app/modules/bag/services/bag_service.dart';
@@ -11,6 +13,8 @@ class BagStore = _BagStoreBase with _$BagStore;
 
 abstract class _BagStoreBase with Store {
   final BagService bagService;
+
+  int total = 0;
 
   _BagStoreBase({required this.bagService});
 
@@ -57,6 +61,18 @@ abstract class _BagStoreBase with Store {
   Future<void> removeItem(int itemId) async {
     try {
       await bagService.removeItem(itemId);
+    } catch (e) {
+      AsukaSnackbar.alert('Error!').show();
+      throw Exception('Error');
+    }
+  }
+
+  Future<void> getTotal() async {
+    try {
+      
+      var response = await bagService.total();
+      total = response;
+      print(response);
     } catch (e) {
       AsukaSnackbar.alert('Error!').show();
       throw Exception('Error');

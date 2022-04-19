@@ -87,4 +87,21 @@ class BagRepository {
       throw Exception(e.response);
     }
   }
+
+  Future<Map<String, dynamic>> total() async {
+    try {
+      
+      final prefs = await SharedPreferences.getInstance();
+
+      String? token = prefs.getString('token');
+      dio.options.headers['authorization'] = 'Bearer $token';
+
+      var response = await dio.get('$url/total');
+
+      return response.data;
+
+    } on DioError catch (e) {
+      throw Exception(e.response);
+    }
+  }
 }
