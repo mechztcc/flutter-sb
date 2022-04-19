@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_sb/app/modules/product/controller/bag_store.dart';
+import 'package:flutter_sb/app/modules/bag/controllers/bag_store.dart';
 import 'package:flutter_sb/app/modules/product/models/product_model.dart';
 import 'package:flutter_sb/app/modules/user/components/gradient_button_widget.dart';
 
@@ -23,22 +23,6 @@ class _CardProductWidgetState extends State<CardProductWidget> {
   int qty = 0;
 
   bool isLoading = false;
-
-  void incrementQty() {
-    setState(() {
-      qty += 1;
-    });
-  }
-
-  void decrementQty() {
-    setState(() {
-      qty > 0 ? qty -= 1 : qty = 0;
-    });
-  }
-
-  void addProduct(ProductModel product) {
-    bagController.addProduct(product);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,26 +58,26 @@ class _CardProductWidgetState extends State<CardProductWidget> {
                   SizedBox(
                     height: 40,
                     child: GradientButtonWidget(
-                      label: !isLoading ? 'ADD' : '...',
+                      label: 'ADD',
                       gradient: const [
                         Color(0xff5F72E4),
                         Color(0xff805EE4),
                       ],
                       func: () {
-                        addProduct(widget.product);
+                        bagController.addItem(widget.product);
                       },
                     ),
                   ),
                   IconButton(
                     onPressed: () {
-                      decrementQty();
+                      
                     },
                     icon: const Icon(Icons.remove),
                   ),
                   Text('$qty'),
                   IconButton(
                     onPressed: () {
-                      incrementQty();
+                     
                     },
                     icon: const Icon(Icons.add),
                   )

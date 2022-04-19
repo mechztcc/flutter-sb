@@ -55,7 +55,7 @@ class BagRepository {
     }
   }
 
-  Future<BagModel> addItem(ProductModel prod) async {
+  Future<void> addItem(ProductModel prod) async {
     try {
       final prefs = await SharedPreferences.getInstance();
 
@@ -69,7 +69,6 @@ class BagRepository {
         "size": prod.size
       });
 
-      return response.data;
 
     } on DioError catch (e) {
       AsukaSnackbar.alert('Falha ao conectar com servidor').show();

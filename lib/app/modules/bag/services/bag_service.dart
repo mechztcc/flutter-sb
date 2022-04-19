@@ -28,10 +28,9 @@ class BagService {
     }
   }
 
-  Future<BagModel> addItem(ProductModel prod) async {
+  Future<void> addItem(ProductModel prod) async {
     try {
-      BagModel bag = await bagRepository.addItem(prod);
-      return bag;
+      await bagRepository.addItem(prod);
     } catch (e) {
       throw Exception(e);
     }

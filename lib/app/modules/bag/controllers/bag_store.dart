@@ -38,7 +38,7 @@ abstract class _BagStoreBase with Store {
 
   Future<void> addItem(ProductModel prod) async {
     try {
-      BagModel bag = await bagService.addItem(prod);
+     await bagService.addItem(prod);
     } catch (e) {
       AsukaSnackbar.alert('Error!').show();
       throw Exception('Error');
